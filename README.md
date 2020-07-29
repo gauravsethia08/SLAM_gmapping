@@ -17,7 +17,7 @@ $ rosrun differential_drive_robot teleop_keyboard.py
 ```
 
 ### Gazebo View
-![Differential Drive Robot](images/model.jpeg)
+![Differential Drive Robot](images/model.jpg)
 
 
 ### To be done
