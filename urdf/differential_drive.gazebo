@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<robot name="differential_drive" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<gazebo>
+  <plugin filename="libgazebo_ros_control.so" name="control"/>
+</gazebo>
+
+<gazebo reference="base_link">
+  <material>Gazebo/Orange</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="left_wheel_1">
+  <material>Gazebo/White</material>
+  <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="right_wheel_1">
+  <material>Gazebo/White</material>
+  <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="caster_wheel_1">
+  <material>Gazebo/Grey</material>
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="depth_camera_1">
+  <material>Gazebo/Blue</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<!--ROS Controller Plugin-->
+<gazebo>
+  <plugin name="gazebo_ros_controller" filename="libgazebo_ros_controller.so">
+  </plugin>
+</gazebo>
+
+<!--Differential Drive Controller Plugin-->
+<gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <alwaysOn>false</alwaysOn>
+      <legacyMode>false</legacyMode>
+      <updateRate>50</updateRate>
+      <leftJoint>Rev9</leftJoint>
+      <rightJoint>Rev10</rightJoint>
+      <wheelSeparation>1</wheelSeparation>
+      <wheelDiameter>0.3</wheelDiameter>
+      <torque>20</torque>
+      <commandTopic>/diff_drive/cmd_vel</commandTopic>
+      <odometryTopic>/diff_drive/odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+<!--Depth Camera/Kinect Plugin-->
+<gazebo reference="depth_camera_1">
+  <sensor name="depth_camera" type="depth">
+    <update_rate>20</update_rate>
+    <camera>
+      <horizontal_fov>1.047198</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.05</near>
+        <far>3</far>
+      </clip>
+    </camera>
+    <plugin name="depth_camera_1_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>1.0</updateRate>
+      <cameraName>depth_ir</cameraName>
+      <imageTopicName>/depth/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/depth/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/depth/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/depth/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/depth/depth/points</pointCloudTopicName>
+      <frameName>depth_frame</frameName>
+      <pointCloudCutoff>0.5</pointCloudCutoff>
+      <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+</robot>

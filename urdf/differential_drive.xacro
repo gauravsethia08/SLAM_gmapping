@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<robot name="differential_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--Including other xacro files-->
+<xacro:include filename="$(find differential_drive_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find differential_drive_description)/urdf/differential_drive.trans" />
+<xacro:include filename="$(find differential_drive_description)/urdf/differential_drive.gazebo" />
+
+<!--Defining Links-->
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.040010469235296664 9.471423530512231e-18 0.0050000000000195"/>
+    <mass value="0.09422466150306563"/>
+    <inertia ixx="0.0000794" ixy="-0.0" ixz="0.0" iyy="0.0001139" iyz="0.0" izz="0.0001916"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.1920926745734306e-09 -0.007500000000000007 7.450615905485458e-11"/>
+    <mass value="0.09803750446346561"/>
+    <inertia ixx="1.4e-05" ixy="0.0" ixz="-0.0" iyy="2.3e-05" iyz="-0.0" izz="1.4e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.08 -0.052 -0.005"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.08 -0.052 -0.005"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.1920926051844916e-09 0.007500000000000007 7.450545042031465e-11"/>
+    <mass value="0.09803750446346572"/>
+    <inertia ixx="1.4e-05" ixy="0.0" ixz="0.0" iyy="2.3e-05" iyz="-0.0" izz="1.4e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.08 0.052 -0.005"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.08 0.052 -0.005"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.0 -5.039195081648916e-18 -0.0056390049196538596"/>
+    <mass value="0.055343764086740264"/>
+    <inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 0.0 -0.0"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/caster_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 0.0 -0.0"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/caster_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="depth_camera_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.01 0.0 0.01"/>
+    <mass value="0.1256"/>
+    <inertia ixx="2.1e-05" ixy="0.0" ixz="0.0" iyy="8e-06" iyz="0.0" izz="2.1e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 -0.0 -0.01"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/depth_camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 -0.0 -0.01"/>
+    <geometry>
+      <mesh filename="package://differential_drive_description/meshes/depth_camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!--Defining Joints-->
+<joint name="Rev9" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.08 0.052 0.005"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="300" velocity="10"/>
+</joint>
+
+<joint name="Rev10" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.08 -0.052 0.005"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit effort="300" velocity="10"/>
+</joint>
+
+<joint name="Rigid13" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+  <parent link="base_link"/>
+  <child link="caster_wheel_1"/>
+</joint>
+
+<joint name="Rigid14" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.01"/>
+  <parent link="base_link"/>
+  <child link="depth_camera_1"/>
+</joint>
+
+<!--Defining Transmission-->
+<transmission name="left_wheel_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Rev9">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left_motor">
+    <mechanicalReduction>1</mechanicalReduction>
+    <hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </actuator>
+</transmission>
+
+<transmission name="right_wheel_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Rev10">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right_motor">
+    <mechanicalReduction>1</mechanicalReduction>
+    <hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </actuator>
+</transmission>
+
+</robot>
