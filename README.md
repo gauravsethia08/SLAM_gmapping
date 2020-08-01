@@ -22,4 +22,7 @@ $ rosrun differential_drive_robot teleop_keyboard.py
 
 ### To be done
 1. Setting a demo world.
-2. Adding gmapping algorithm.
+<del> 2. Adding gmapping algorithm. </del>
+
+### Issues
+1. Map is empty
