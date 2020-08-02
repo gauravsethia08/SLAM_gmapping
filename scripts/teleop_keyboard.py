@@ -55,8 +55,8 @@ def getKey():
     return key
 
 #Defining the intitial speed
-speed = 1.0
-turn = 1
+speed = 10.0
+turn = 10.0
 
 def vels(speed,turn):
     return "currently:\tspeed %s\tturn %s " % (speed,turn)
