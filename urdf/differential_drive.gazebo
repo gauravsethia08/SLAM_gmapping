@@ -35,8 +35,8 @@
 
 <gazebo reference="caster_wheel_1">
   <material>Gazebo/Grey</material>
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
+  <mu1>100.0</mu1>
+  <mu2>50.0</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
@@ -95,7 +95,7 @@
       <imageTopicName>/depth/color/image_raw</imageTopicName>
       <cameraInfoTopicName>/depth/color/camera_info</cameraInfoTopicName>
       <depthImageTopicName>/depth/depth/image_raw</depthImageTopicName>
-      <depthImageInfoTopicName>/depth/depth/camera_info</depthImageInfoTopicName>
+      <depthImageCameraInfoTopicName>/depth/depth/camera_info</depthImageCameraInfoTopicName>
       <pointCloudTopicName>/depth/depth/points</pointCloudTopicName>
       <frameName>depth_frame</frameName>
       <pointCloudCutoff>0.5</pointCloudCutoff>

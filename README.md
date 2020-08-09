@@ -16,6 +16,17 @@ $ roslaunch differential_drive_description gazebo.launch
 $ rosrun differential_drive_robot teleop_keyboard.py
 ```
 
+### Dependencies
+1. Gmapping Package
+```
+$ sudo apt-get install ros-[DISTRO_NAME]-gmapping*
+```
+
+2. Differential Driver Controller
+```
+$ sudo apt-get install ros-[DISTRO_NAME]-diff-drive-controller*
+```
+
 ### Gazebo View
 ![Differential Drive Robot](images/model.jpg)
 
@@ -25,4 +36,4 @@ $ rosrun differential_drive_robot teleop_keyboard.py
 2. <del> Adding gmapping algorithm. </del>
 
 ### Issues
-1. Map is empty
+1. <del> Map is empty </del>
