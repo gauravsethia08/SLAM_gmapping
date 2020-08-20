@@ -28,12 +28,20 @@ $ sudo apt-get install ros-[DISTRO_NAME]-diff-drive-controller*
 ```
 
 ### Gazebo View
+1. Model View
 ![Differential Drive Robot](images/model.jpg)
 
+2. World
+![Demo World](images/world.jpg)
+
+### Improvements
+1. Improved Interial Matrix
+2. Improved Odometry
 
 ### To be done
-1. Setting a demo world.
+1. <del> Setting a demo world. </del>
 2. <del> Adding gmapping algorithm. </del>
 
 ### Issues
 1. <del> Map is empty </del>
+2. <del> Weird map is generated </del>

@@ -7,7 +7,7 @@ import sys, select, termios, tty
 
 #Defining msg to be printed
 msg = """
-Control Your Chefbot!
+Control Your Robot!
 ---------------------------
 Moving around:
    u    i    o

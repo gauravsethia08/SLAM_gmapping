@@ -5,6 +5,7 @@
 
   <!--Controlller Manager NOde-->
   <node name="diff_controller_manager" pkg="controller_manager" type="spawner" args="mobile_base_controller" output="screen" respawn="false"/>
+
   <!--Laser Scan Nodelet Manager-->
   <node name="laserscan_nodelet_manager" pkg="nodelet" type="nodelet" args="manager"/>
   <!--Depth Image to Laser Scan Nodelet-->
@@ -20,6 +21,7 @@
 
   <!--Launching a empty gazebo world-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find differential_drive_description)/world/demo_world.world"/>
     <arg name="paused" value="true"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
@@ -31,11 +33,12 @@
   <node args="-param robot_description -urdf -model differential_drive" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
 
   <!--Launching the gmapping algrithm-->
-  <arg name="scan_topic" default="/scan"/>
+  <arg name="scan_topic" default="depth_camera_1"/>
   <arg name="base_frame" default="base_link"/>
   <arg name="odom_frame" default="diff_drive/odom"/>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
   <node pkg="rviz" type="rviz" name="rviz"/>
 
  <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping" output="screen">
@@ -52,12 +55,12 @@
     <param name="lsigma" value="0.075"/>
     <param name="ogain" value="3"/>
     <param name="lskip" value="0"/>
-    <param name="minimumScore" value="0"/>
+    <param name="minimumScore" value="100"/>
     <param name="srr" value="0.1"/>
     <param name="srt" value="0.2"/>
     <param name="str" value="0.1"/>
     <param name="stt" value="0.2"/>
-    <param name="linearUpdate" value="1.0"/>
+    <param name="linearUpdate" value="0.5"/>
     <param name="angularUpdate" value="0.5"/>
     <param name="temporalUpdate" value="-1.0"/>
     <param name="resampleThreshold" value="0.5"/>
@@ -71,6 +74,7 @@
     <param name="llsamplestep" value="0.01"/>
     <param name="lasamplerange" value="0.005"/>
     <param name="occ_thresh" value="0.25"/>
+    <param name="transform_publish_period" value="0"/>
     <param name="scan" value="$(arg scan_topic)"/>
   </node>
 

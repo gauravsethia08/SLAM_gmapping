@@ -20,7 +20,7 @@
   <mu1>100.0</mu1>
     <mu2>50.0</mu2>
     <kp>1000000.0</kp>
-    <kd>100.0</kd>
+    <kd>1.0</kd>
   <selfCollide>true</selfCollide>
 </gazebo>
 
@@ -29,7 +29,7 @@
   <mu1>100.0</mu1>
     <mu2>50.0</mu2>
     <kp>1000000.0</kp>
-    <kd>100.0</kd>
+    <kd>1.0</kd>
   <selfCollide>true</selfCollide>
 </gazebo>
 
@@ -62,7 +62,7 @@
       <leftJoint>Rev9</leftJoint>
       <rightJoint>Rev10</rightJoint>
       <wheelSeparation>1</wheelSeparation>
-      <wheelDiameter>0.3</wheelDiameter>
+      <wheelDiameter>0.4</wheelDiameter>
       <torque>20</torque>
       <commandTopic>/diff_drive/cmd_vel</commandTopic>
       <odometryTopic>/diff_drive/odom</odometryTopic>
